@@ -110,10 +110,10 @@
 45 | Aralaih svabhavyat |important 
 46 | Lalatam lavanya | success
 47 | Bhruvau bhugne kimchit| success
-48 | Ahah sute savyam |important, work 
-49 | Vishala kalyani | 
-50 | Kavinam samdarbhastabaka |important 
-51 | Shive shringaraardra |important 
-52 | Gate karnaabhyarnam | 
-53 | Vibhakta traivarnyam | 
-54 | Pavitri kartum nah | 
+48 | Ahah sute savyam |important, work, eyes 
+49 | Vishala kalyani | eyes
+50 | Kavinam samdarbhastabaka |important, eyes
+51 | Shive shringaraardra |important, eyes
+52 | Gate karnaabhyarnam | eyes
+53 | Vibhakta traivarnyam | eyes
+54 | Pavitri kartum nah | eyes
