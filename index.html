@@ -581,7 +581,9 @@ function parseSongs(text){
 
     out.push({
       num, pad, name, badge, title,
-      shown: title || name,          // the line a student reads
+      // The dhyanam keeps its public name whatever the title column says,
+      // so it can never appear to a student as anything but "Dhyanam Slokam".
+      shown: num === DHYANAM_NUM ? DHYANAM_NAME : (title || name),
       tags,
       file,
       key: (pad + " " + name + " " + title).toLowerCase()
@@ -598,8 +600,10 @@ function esc(str){
 
 /* Turn a tag like "eye-sight" into a tab label like "Eye Sight" */
 function label(tag){
+  // Capitalise only at a real word start. Using \b here would also fire
+  // after an apostrophe and give "Lakshmi'S Blessings".
   return tag.replace(/[-_]/g, " ")
-            .replace(/\b\w/g, c => c.toUpperCase());
+            .replace(/(^|\s)(\w)/g, (m, before, c) => before + c.toUpperCase());
 }
 
 /* ================================================================

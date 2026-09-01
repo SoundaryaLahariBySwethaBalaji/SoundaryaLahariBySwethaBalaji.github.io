@@ -14,14 +14,31 @@
 #  Lines starting with # are notes to yourself. They are ignored.
 #
 # ------------------------------------------------------------
+#  ABOUT THE TITLES BELOW
+#
+#  These are the opening words of each verse, taken from two
+#  public editions of the text that agree with each other:
+#      shlokam.org/saundaryalahari
+#      bhaktinidhi.com/en/saundarya-lahari-in-english
+#
+#  They are spelled simply, without accent marks, so they are
+#  easy to read and easy to retype. They have NOT been checked
+#  against Swetha's own text. If she spells one differently,
+#  hers is right - just edit the line.
+#
+#  To go back to plain numbering for any verse, delete the
+#  title and leave the two | in place. The page then says
+#  "Slokam 07" for that one.
+#
+# ------------------------------------------------------------
 #  ADDING SLOKAM 55
 #  1. Upload the recording, named 55.m4a. There are no folders -
 #     everything sits together in the one place.
-#  2. Add one line down at the bottom:   55 |  | 
+#  2. Add one line down at the bottom:   55 | Title here |
 #  That is all. The page finds 55.m4a on its own.
 #
 # ------------------------------------------------------------
-#  TAGS
+#  TAGS - still to come from Swetha
 #  Type a word after the second | and a tab appears by itself.
 #  Delete the last line using a word and the tab disappears.
 #  Keep the spelling identical every time or you get two tabs.
@@ -34,13 +51,9 @@
 #      skin
 #      anxiety
 #
-#  Example of a finished line:
+#  A finished line looks like this:
 #
 #      22 | Bhavani tvam dase | important, career
-#
-#  Titles and tags are blank for now, waiting on Swetha.
-#  See REVIEW-titles-and-tags.md for the sheet to go through
-#  with her. Until then the page shows Slokam 01, Slokam 02...
 #
 # ------------------------------------------------------------
 #  The dhyanam and Slokam 01 start every playlist automatically.
@@ -49,58 +62,58 @@
 #  All 55 recordings are here: the dhyanam, then 1 through 54.
 # ============================================================
 
-0 |  | 
-1 |  | 
-2 |  | 
-3 |  | 
-4 |  | 
-5 |  | 
-6 |  | 
-7 |  | 
-8 |  | 
-9 |  | 
-10 |  | 
-11 |  | 
-12 |  | 
-13 |  | 
-14 |  | 
-15 |  | 
-16 |  | 
-17 |  | 
-18 |  | 
-19 |  | 
-20 |  | 
-21 |  | 
-22 |  | 
-23 |  | 
-24 |  | 
-25 |  | 
-26 |  | 
-27 |  | 
-28 |  | 
-29 |  | 
-30 |  | 
-31 |  | 
-32 |  | 
-33 |  | 
-34 |  | 
-35 |  | 
-36 |  | 
-37 |  | 
-38 |  | 
-39 |  | 
-40 |  | 
-41 |  | 
-42 |  | 
-43 |  | 
-44 |  | 
-45 |  | 
-46 |  | 
-47 |  | 
-48 |  | 
-49 |  | 
-50 |  | 
-51 |  | 
-52 |  | 
-53 |  | 
-54 |  | 
+0 | Dhyanam  | important
+1 | Shivah shaktya yukto | important
+2 | Taniyamsam pamsum tava | 
+3 | Avidyanam anta-stimira-mihira dvipa | 
+4 | Tvadanyah panibhyam | anxiety, important
+5 | Haristvaamaaradhya | 
+6 | Dhanurpaushpam maurvi | 
+7 | Kvanat kanchi dama | important
+8 | Sudhasindhor madhye suravitapi | important
+9 | Mahim muladhare | safe travels
+10 | Sudhadharaasaraaish | health
+11 | Chaturbhihi shrikanthaih shiva | children, important
+12 | Tvadiyam saundaryam tuhinagiri | 
+13 | Naram varshiyamsam nayana | important
+14 | Kshitau shat panchashad | important
+15 | Sharajjyotsna shuddham | important
+16 | Kavindranam chetah kamala | important
+17 | Savitribhir vacham | important, health, children
+18 | Tanucchayabhiste taruna | 
+19 | Mukham bindum kritva | 
+20 | Kirantimangebhyah | 
+21 | Tatillekha tanvim |sarva siddhi 
+22 | Bhavani tvam dase | 
+23 | Tvaya hritva vamam | 
+24 | Jagatsute dhata | 
+25 | Trayanam devanam |work 
+26 | Virinchih panchatvam | 
+27 | Japo jalpah shilpam | 
+28 | Sudhamapyaasvadya | partner's health, important
+29 | Kiritam vairincham |smooth labour, important 
+30 | Svadehodbhutabhihi ghrinibhih | 
+31 | Chatushshashtya tantraih sakalam | skin
+32 | Shivah shaktih kamah | skin
+33 | Smaram yonim lakshmim | skin
+34 | Shariram tvam shambhoh | skin, compatibility
+35 | Manastvam vyoma | skin
+36 | Tavaajna chakrastham | skin
+37 | Vishuddhau te shuddha | 
+38 | Samunmilat samvit kamala | 
+39 | Tava svadhishthane hutavaham | 
+40 | Tatittvantam shaktya |Lakshmi's blessings 
+41 | Tavaadhare mule | 
+42 | Gatairmanikya tvam | important
+43 | Dhunotu dhvantam | important, anxiety
+44 | Tanotu kshemam nastava | important
+45 | Aralaih svabhavyat |important 
+46 | Lalatam lavanya | success
+47 | Bhruvau bhugne kimchit| success
+48 | Ahah sute savyam |important, work 
+49 | Vishala kalyani | 
+50 | Kavinam samdarbhastabaka |important 
+51 | Shive shringaraardra |important 
+52 | Gate karnaabhyarnam | 
+53 | Vibhakta traivarnyam | 
+54 | Pavitri kartum nah | 
