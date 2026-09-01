@@ -123,26 +123,26 @@ body::before{
 }
 
 /* ---------- playlist tabs ---------- */
+/* Thirteen themes will not fit on one line of a phone, and a
+   sideways scroller hides most of them with nothing to say so.
+   Wrapping shows every playlist at once. */
 .tabs{
   display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding:4px 18px 14px;
-  margin:0 -18px;
-  scrollbar-width:none;
+  flex-wrap:wrap;
+  gap:7px;
+  padding:2px 0 14px;
 }
-.tabs::-webkit-scrollbar{display:none}
 
 .tab{
   flex:0 0 auto;
   font-family:var(--ui);
-  font-size:14px;
+  font-size:13.5px;
   font-weight:600;
   color:var(--muted);
   background:var(--surface);
   border:1px solid var(--line);
   border-radius:999px;
-  padding:8px 15px;
+  padding:6px 12px;
   cursor:pointer;
   white-space:nowrap;
   transition:color .16s, background .16s, border-color .16s;
@@ -154,6 +154,14 @@ body::before{
   color:#2A1206;
 }
 .tab .count{opacity:.55; font-weight:500; margin-left:5px}
+
+.tab.more{
+  color:var(--gold);
+  background:none;
+  border-style:dashed;
+  border-color:var(--gold-dim);
+}
+.tab.more:hover{color:var(--gold); background:var(--surface)}
 
 /* ---------- search ---------- */
 .search{
@@ -610,6 +618,7 @@ function label(tag){
    State
    ================================================================ */
 let SONGS = [], TABS = [], view = [], tab = "all", idx = -1;
+let themesOpen = false;   // is the full theme list unfolded?
 let aPoint = null, bPoint = null, seeking = false;
 
 const $ = id => document.getElementById(id);
@@ -630,17 +639,44 @@ function buildTabs(){
   const rest = seen.filter(t => t !== "important");
   TABS = [{id:"all", name:"All"}];
   if(seen.includes("important")) TABS.push({id:"important", name:"Important"});
+  // With a dozen themes, first-appearance order is unguessable.
+  // Alphabetical means a student can find "Skin" without hunting.
+  rest.sort((x, y) => label(x).localeCompare(label(y)));
   rest.forEach(t => TABS.push({id:t, name:label(t)}));
 
-  $("tabs").innerHTML = TABS.map(t => {
+  /* A dozen themes laid out flat would push the slokams off the
+     screen. So the strip normally shows only All, Important and
+     whichever theme is open, with the rest one tap away. */
+  const pinned = TABS.filter(t => t.id === "all" || t.id === "important" || t.id === tab);
+  const shown  = themesOpen ? TABS : pinned;
+  const hidden = TABS.length - pinned.length;
+
+  const pill = t => {
     const n = t.id === "all" ? SONGS.length
                              : SONGS.filter(s => s.tags.includes(t.id)).length;
-    return `<button class="tab" role="tab" data-tab="${t.id}"
-              aria-selected="${t.id === tab}">${t.name}<span class="count">${n}</span></button>`;
-  }).join("");
+    return `<button class="tab" role="tab" data-tab="${esc(t.id)}"
+              aria-selected="${t.id === tab}">${esc(t.name)}<span class="count">${n}</span></button>`;
+  };
+
+  let html = shown.map(pill).join("");
+  if(hidden > 0){
+    html += `<button class="tab more" id="moreTabs" aria-expanded="${themesOpen}">`
+          + (themesOpen ? "Fewer &#9652;" : `More themes<span class="count">${hidden}</span>&#9662;`)
+          + `</button>`;
+  }
+  $("tabs").innerHTML = html;
 
   $("tabs").querySelectorAll(".tab").forEach(b => {
-    b.onclick = () => { tab = b.dataset.tab; buildTabs(); render(); };
+    if(b.id === "moreTabs"){
+      b.onclick = () => { themesOpen = !themesOpen; buildTabs(); };
+      return;
+    }
+    b.onclick = () => {
+      tab = b.dataset.tab;
+      themesOpen = false;      // picking one folds the list away again
+      buildTabs();
+      render();
+    };
   });
 }
 
@@ -931,7 +967,7 @@ if("mediaSession" in navigator){
    kept here: whatever has been played is saved automatically, and
    the button saves the whole set in one go.
    ================================================================ */
-const MEDIA_CACHE = "sl-media-v2";      // must match MEDIA in sw.js
+const MEDIA_CACHE = "sl-media-v3";      // must match MEDIA in sw.js
 
 const canCache = "caches" in window && "serviceWorker" in navigator
                  && location.protocol !== "file:";
@@ -978,6 +1014,7 @@ $("saveAll").onclick = async () => {
 
 /* keep the count honest as tracks get played and cached */
 audio.addEventListener("ended", () => setTimeout(refreshOffline, 400));
+audio.addEventListener("loadeddata", () => setTimeout(refreshOffline, 1200));
 
 if(canCache){
   window.addEventListener("load", () => {
