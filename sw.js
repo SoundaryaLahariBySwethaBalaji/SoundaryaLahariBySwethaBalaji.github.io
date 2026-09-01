@@ -8,7 +8,7 @@
    Changing songs.txt or adding audio needs NO change here.
    ================================================================ */
 
-const VERSION = 1;
+const VERSION = 2;
 
 const SHELL = `sl-shell-v${VERSION}`;
 const MEDIA = `sl-media-v${VERSION}`;   // must match MEDIA_CACHE in index.html
@@ -21,13 +21,8 @@ const SHELL_FILES = [
   "./index.html",
   "./songs.txt",
   "./manifest.webmanifest",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./fonts/karla-latin.woff2",
-  "./fonts/karla-latin-ext.woff2",
-  "./fonts/tiro-devanagari.woff2",
-  "./fonts/tiro-latin.woff2",
-  "./fonts/tiro-latin-ext.woff2"
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", e => {
@@ -65,7 +60,7 @@ self.addEventListener("fetch", e => {
   const url = new URL(req.url);
   if(url.origin !== self.location.origin) return;
 
-  const isAudio    = url.pathname.includes("/audio/");
+  const isAudio    = url.pathname.endsWith(".m4a");
   const isSongList = url.pathname.endsWith("songs.txt");
   const isPage     = req.mode === "navigate";
 
@@ -102,7 +97,8 @@ self.addEventListener("fetch", e => {
     return;
   }
 
-  /* Fonts and icons: cache first, they do not change. */
+  /* Icons and anything else: cache first, they do not change.
+   (The fonts are inside index.html, so there is nothing to fetch.) */
   e.respondWith(
     caches.match(req).then(hit => hit || fetch(req).then(res => {
       if(res.ok && res.status === 200){

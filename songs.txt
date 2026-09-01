@@ -15,9 +15,10 @@
 #
 # ------------------------------------------------------------
 #  ADDING SLOKAM 55
-#  1. Upload the recording to the audio folder, named 55.m4a
+#  1. Upload the recording, named 55.m4a. There are no folders -
+#     everything sits together in the one place.
 #  2. Add one line down at the bottom:   55 |  | 
-#  That is all. The page finds audio/55.m4a on its own.
+#  That is all. The page finds 55.m4a on its own.
 #
 # ------------------------------------------------------------
 #  TAGS

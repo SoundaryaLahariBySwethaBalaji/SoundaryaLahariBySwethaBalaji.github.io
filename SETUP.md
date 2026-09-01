@@ -1,6 +1,6 @@
 # Putting the site on the internet
 
-Everything is built and tested. What follows is the part you do — about 20 minutes, once. After that, adding a new slokam takes two minutes from your phone.
+The site is already live. What follows fixes the two things that are wrong with it, then gets out of your way.
 
 You do not need to understand any of it. Follow the steps in order.
 
@@ -10,13 +10,14 @@ You do not need to understand any of it. Follow the steps in order.
 
 Inside the `site` folder:
 
+**There are no folders any more.** Everything sits together in one place, which is what stops the upload going wrong again.
+
 | | |
 |---|---|
-| `index.html` | The whole app. One file. Never needs editing. |
+| `index.html` | The whole app, typefaces included. Never needs editing. |
 | `songs.txt` | **The only file you will ever edit.** The list of slokams. |
-| `audio/` | 55 recordings — `00.m4a` (the dhyanam) through `54.m4a` |
-| `fonts/` | The two typefaces, so the page needs no outside connections |
-| `icons/` | The app icon for phone home screens |
+| `00.m4a` … `54.m4a` | The 55 recordings. `00` is the dhyanam. |
+| `icon-*.png` | The app icon for phone home screens |
 | `sw.js` | Makes it work without internet |
 | `manifest.webmanifest` | Lets it install like an app |
 | `robots.txt` | Asks Google not to list the site |
@@ -27,40 +28,57 @@ Total: **33 MB.** Small.
 
 ---
 
-# Part 1 — Rename the organisation
+# Part 1 — Shorten the address
 
-You've already made the organisation and the repository. Two renames put them in agreement, and the rest is uploading.
+Right now the site is at:
 
-The organisation is currently `Soundarya-Lahari-by-Swetha-Balaji`, which would make a 41-character web address. Shorten it:
+> `https://soundarya-lahari-by-swetha-balaji.github.io/SoundaryLahariBySwethaBalaji.github.io/`
+
+That long form happens when the **repository name and the organisation name disagree**. You renamed the repository to `SoundaryLahariBySwethaBalaji.github.io`, but the organisation is still `Soundarya-Lahari-by-Swetha-Balaji`. Make them match and the address collapses to the short one.
 
 1. Organisation → **Settings** → **General**
-2. Scroll to the bottom, find **Rename organization**
-3. New name: `LahariWithSwetha`
+2. Scroll to the bottom → **Rename organization**
+3. New name: `SoundaryLahariBySwethaBalaji`
 
-> **Keep the pretty name.** The **Organization display name** field, higher up the same page, is separate — leave it reading *Soundarya Lahari by Swetha Balaji*. Only the short name becomes the address.
+That is the only change needed — the repository is already named correctly for it. Result:
+
+> **https://soundarylahariByswethabalaji.github.io**
+
+(GitHub writes it lowercase. Normal.)
+
+> **One spelling check before you commit to it.** You've typed `Soundary` — the word is **Soundarya**, with the final *a*. `SoundaryaLahariBySwethaBalaji` is also free. If you want the correct spelling, use it for the organisation name here **and** rename the repository to `SoundaryaLahariBySwethaBalaji.github.io` so the two still match. Your call — but this is the moment, before anyone has the link.
 
 ---
 
-# Part 2 — Rename the repository to match
+# Part 2 — Fix the missing files
 
-This is the step that decides your address. GitHub gives you the short root address only when **the repository name matches its owner's name**.
+The 55 recordings uploaded, but they landed in the main folder rather than inside `audio/`, and the `fonts` and `icons` folders never uploaded at all. That is why nothing plays.
 
-1. Repository → **Settings** → **General**
-2. **Repository name** → change it to `LahariWithSwetha.github.io` → **Rename**
+Rather than have you fight the uploader again, I've rebuilt the app to expect exactly what your repository already looks like: **recordings in the main folder, no subfolders anywhere.** The typefaces are now built into `index.html` itself, so there is no `fonts` folder to lose.
 
-Which lands the site here:
+**Leave the 55 `.m4a` files exactly where they are.** Upload these seven files, replacing what's there:
 
-> **https://lahariwithswetha.github.io**
+- `index.html` — rebuilt, now expects the flat layout
+- `manifest.webmanifest`
+- `sw.js`
+- `songs.txt`
+- `icon-180.png`, `icon-192.png`, `icon-512.png`, `icon-512-maskable.png` — these never made it before
 
-(GitHub writes it in lowercase. Normal, nothing to fix.)
+Steps:
 
-If the two names don't match, the site still works — just at `lahariwithswetha.github.io/whatever-the-repo-is-called/` instead. That's the only thing this step is protecting you from.
+1. Repository → **Add file** → **Upload files**
+2. In your `site` folder, select those files — they're all loose, no folders involved
+3. Drag them across → **Commit changes**
+
+GitHub replaces the older versions automatically. `index.html` is about 370 KB now because the typefaces live inside it; that is expected.
+
+Wait a minute, then reload the site. The slokams will play.
 
 ---
 
 # Part 3 — Turn on two-factor authentication
 
-Now, not later. Your account is the only key to the site.
+If you haven't already. Your account is the only key to the site.
 
 1. Click your photo, top right → **Settings**
 2. Left side → **Password and authentication**
@@ -69,41 +87,7 @@ Now, not later. Your account is the only key to the site.
 
 ---
 
-# Part 4 — Upload the files
-
-Use a laptop for this part, on wifi. It's about 33 MB.
-
-1. On the repository page, **Add file** → **Upload files**
-2. Open your `site` folder on the computer.
-3. Select everything inside it — `index.html`, `songs.txt`, `sw.js`, `manifest.webmanifest`, `robots.txt`, and the `audio`, `fonts` and `icons` folders. Ctrl+A works.
-4. Drag all of it onto the GitHub page.
-
-   **Drag the contents, not the `site` folder itself.** If you drag the folder, everything ends up one level too deep and nothing works.
-5. Wait. The audio takes a minute or two.
-6. Scroll down, click the green **Commit changes**.
-
-If it stalls, do it in two goes: the loose files first, then the `audio` folder on its own.
-
-**Check before moving on.** Your repository should list: `audio`, `fonts`, `icons`, `index.html`, `manifest.webmanifest`, `robots.txt`, `songs.txt`, `sw.js`. Click into `audio` and count — **55 files**, `00.m4a` straight through `54.m4a` with no gaps.
-
----
-
-# Part 5 — Switch the website on
-
-1. In your repository, click **Settings** (the tab along the top).
-2. Left side, scroll down to **Pages**.
-3. **Source** → **Deploy from a branch**.
-4. Branch **main**, folder **/ (root)**.
-5. Click **Save**.
-6. Tick **Enforce HTTPS** if it isn't already. It may be greyed out for a few minutes — come back to it.
-
-Wait about two minutes. Refresh the Settings → Pages screen and it will show:
-
-> Your site is live at `https://lahariwithswetha.github.io/`
-
----
-
-# Part 6 — Add your everyday account as an owner
+# Part 4 — Add your everyday account as an owner
 
 This is what means you never sign in and out again.
 
@@ -117,16 +101,16 @@ From here on you upload recordings and edit `songs.txt` as **yourself**. Owner, 
 
 ---
 
-# Part 7 — Check it
+# Part 5 — Check it
 
-Open that address on your phone.
+Open the address on your phone.
 
 - All 55 slokams listed, starting with **Dhyanam Slokam**
-- Tap one — it plays
+- Tap one — **it plays**
 - Drag the **laya** slider — it slows down, and Swetha's voice stays natural rather than going deep
 - Tap **Save all for offline**, wait for it to finish, then turn on aeroplane mode and reload. It should still work.
 
-**Put it on your home screen.** On iPhone: Share button → *Add to Home Screen*. On Android: the three dots → *Install app* or *Add to Home screen*. It then opens like a real app, with the yantra as its icon.
+**Put it on your home screen.** On iPhone: Share button → *Add to Home Screen*. On Android: the three dots → *Install app*. It opens like a real app, with the yantra as its icon.
 
 Then send the link to your students on WhatsApp.
 
@@ -139,7 +123,7 @@ Two minutes, and your phone is fine for it.
 **First, the recording**
 
 1. Save the file. Rename it `55.m4a`. Nothing else — no title in the filename.
-2. Go to your repository → click the **audio** folder.
+2. Go to your repository. There are no folders — everything is in the one place.
 3. **Add file** → **Upload files** → choose `55.m4a` → **Commit changes**.
 
 **Then the list**
@@ -188,7 +172,7 @@ A line is: **number | title | tags**
 # When something goes wrong
 
 **A slokam won't play — the player says "Can't find…"**
-The file name and the number don't match. Check `audio` for the exact spelling. Nine times out of ten it's the leading zero: `7.m4a` instead of `07.m4a`.
+The file name and the number don't match. Check the repository for the exact spelling. Nine times out of ten it's the leading zero: `7.m4a` instead of `07.m4a`.
 
 **I edited songs.txt and the site looks the same**
 Wait a full minute — GitHub takes a moment to rebuild — then reload. On a phone, close the tab completely and reopen. If you've added it to your home screen, close the app fully and reopen it with internet on.
@@ -196,8 +180,8 @@ Wait a full minute — GitHub takes a moment to rebuild — then reload. On a ph
 **The site shows "three sample slokams"**
 You're opening `index.html` from your computer instead of from the web address. Use the `github.io` address.
 
-**Everything is missing after uploading**
-You dragged the `site` folder instead of what's inside it. Go to the repository, open the `site` folder that shouldn't be there, delete it, and upload again — contents only.
+**Nothing plays after uploading a batch of recordings**
+Check they went into the repository itself and not into a folder. Everything lives together in one place — `index.html`, `songs.txt` and all the `.m4a` files side by side. If a `site` or `audio` folder has appeared, open it, and re-upload those files to the main level.
 
 **Settings → Pages doesn't offer a branch**
 No files uploaded yet, or the upload didn't commit. Do Part 4 again.
@@ -209,7 +193,7 @@ It needs one visit with internet first, and it only works on the real web addres
 
 # Later, if you want it — a custom domain
 
-Not needed. `lahariwithswetha.github.io` works forever, free, with HTTPS.
+Not needed. Your `github.io` address works forever, free, with HTTPS.
 
 If you do want something like `soundaryalahari.com`, it's about $11 a year from a registrar such as Porkbun — check the price at checkout rather than trusting this number. Pointing it at the site takes five minutes in Settings → Pages → Custom domain, and the free HTTPS follows automatically. Nothing else changes.
 
