@@ -1,0 +1,7 @@
+# These are Swetha Balaji's recordings, shared with her students.
+# The site is public so that a link always works, but we would rather
+# it did not turn up in search results. Well-behaved search engines
+# honour this; it is a request, not a lock.
+
+User-agent: *
+Disallow: /
